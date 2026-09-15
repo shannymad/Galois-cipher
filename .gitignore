@@ -1,0 +1,33 @@
+# Build directories
+build/
+cmake-build-*/
+
+# Binaries
+*.o
+*.obj
+*.exe
+*.out
+*.app
+galois_cipher
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Test output
+*.enc
+*.dec
+!data/sample.txt
