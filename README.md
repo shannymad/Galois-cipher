@@ -148,7 +148,33 @@ LFSR. It consists of:
 - XOR-based: encryption and decryption are the same operation.
 - No external dependencies (only the C++ standard library).
 
-## Building
+
+## Known Limitations
+
+The following limitations are intentional and reflect the educational scope
+of the project. They are documented here so that the reader is not misled.
+This project is an **educational implementation** of a stream cipher based on
+the Galois LFSR over `GF(2^n)`. Its purpose is to demonstrate the idea, not
+to provide a secure encryption tool.
+
+- It is **not cryptographically secure**. A single LFSR is a linear system,
+  which means the whole keystream can be reconstructed from a small piece of
+  known plaintext. For `n = 8`, sixteen bits — just two bytes — are enough to
+  recover the seed and break the cipher completely.
+
+- It is **not optimized for speed**. The code is written to be easy to read,
+  not to be fast. Every byte of the keystream is built one bit at a time,
+  through eight separate calls to `next_bit`, and each of those calls does
+  one multiplication by `x`.
+
+- It is **not resistant to key reuse**. The same `seed` always produces the
+  same keystream. If you encrypt two different messages with the same seed,
+  the two ciphertexts are related in a simple way: their XOR equals the XOR
+  of the two original messages. Anyone who knows one of them can recover the
+  other. Every stream cipher has this weakness unless it uses a fresh IV for
+  each message, and this project does not use an IV.
+
+## Building and Running
 
 Requirements:
 

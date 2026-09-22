@@ -13,6 +13,8 @@ target_include_directories(galois INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/include/galois
 )
+add_executable(galois_cli src/main.cpp)
+target_link_libraries(galois_cli PRIVATE galois)
 
 enable_testing()
 add_subdirectory(tests)
